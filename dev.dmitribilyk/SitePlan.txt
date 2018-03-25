@@ -1,0 +1,67 @@
+Dev Site sections:
+
+-Home
+	-interactive canvas
+-About
+	-background
+	-tech I use
+	-looking for new opportunities
+
+Projects:
+	-Unity game, webGL build
+		-tech:...
+	-Twitch Tracker
+		-tech:…
+	-Simon Says
+			-tech:...
+	-Pomodoro Clock
+			-tech:…
+	-calculator
+		-tech…
+	-Online TTT
+		tech:...
+	-Wikipedia Search
+			-tech:...
+
+Contact: 
+	-email form
+	-number
+	-github
+	-social
+	
+Component List:
+-nav menu
+	scroll nav to:
+		-home, projects, about, contact
+
+	:must toggle to top display on desktop or tablet
+	:must slide in from bottom on mobile using transform
+	:must close on click
+
+-intro text
+
+-text content:
+	-updatable via a data file
+	-must be left justified and padded on desktop
+	-must be centered in div, but left justified text on mobile
+	-Props: section title, content text
+ 
+
+-about section 
+	-parent of text content and Tech I use
+
+PARENT INSIDE A CONTAINER
+-tech I use
+	-fly in on comets triggered by scroll
+	-should be updatable with data file that has image urls hosted in assets
+
+PARENT INSIDE A CONTAINER
+-project module	
+	-arranges itself in a responsive grid
+	-preserves aspect ratio
+	-clicking rotates cube-like to description and URL to try project.
+	-displayed as a full-width image
+	-should be updatable with image URL and link url in the data file, and description.
+
+	
+	
