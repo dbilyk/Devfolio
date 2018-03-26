@@ -1,16 +1,11 @@
 import React from "react" 
-import "./BGContainer.css"
-class Anim {
-    
+
+function BottomBGs(props){
+    return (
+        <div className="BottomBGs">
+            
+        </div>
+    )
 }
 
-export default class BGContainer extends React.Component{
-    render(){
-        return (
-            <div className="BGContainer">
-                
-            </div>
-        )
-    }
-
-}
+export default BottomBGs

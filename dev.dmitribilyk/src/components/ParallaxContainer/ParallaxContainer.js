@@ -3,7 +3,7 @@ import React from "react"
 import "./ParallaxContainer.css"
 const ParallaxContainer = (props)=>{
     return (
-        <div className="ParallaxContainer">
+        <div style={{transform:"translate(0,"+props.distFromTop+"px)"}} className="ParallaxContainer">
            {[...props.children]} 
         </div>
     )
