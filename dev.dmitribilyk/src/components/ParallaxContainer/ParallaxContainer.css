@@ -1,4 +1,3 @@
-.BGContainer{
-    background-color:#eef;
-    height:100px;
+.ParallaxContainer{
+    overflow:visible;
 }

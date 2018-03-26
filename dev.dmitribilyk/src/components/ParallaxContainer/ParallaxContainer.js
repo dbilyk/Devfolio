@@ -1,16 +1,12 @@
 import React from "react" 
-import "./BGContainer.css"
-class Anim {
-    
+
+import "./ParallaxContainer.css"
+const ParallaxContainer = (props)=>{
+    return (
+        <div className="ParallaxContainer">
+           {[...props.children]} 
+        </div>
+    )
 }
 
-export default class BGContainer extends React.Component{
-    render(){
-        return (
-            <div className="BGContainer">
-                
-            </div>
-        )
-    }
-
-}
+export default ParallaxContainer

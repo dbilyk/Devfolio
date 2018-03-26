@@ -1,4 +1,5 @@
 export default {
+    
     bg:{
         day:{
             bg :[208,255,242],
