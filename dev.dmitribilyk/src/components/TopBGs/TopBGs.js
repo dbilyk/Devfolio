@@ -1,9 +1,12 @@
 import React from "react" 
+import "./TopBGs.css"
 
 function TopBGs(props){
     return (
-        <div className="TopBGs">
-            
+        <div className="TopBGContainer">
+            <div className="TopBGs">
+            {[...props.children]}
+            </div>
         </div>
     )
 }

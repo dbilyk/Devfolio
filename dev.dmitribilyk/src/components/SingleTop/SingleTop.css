@@ -1,4 +1,15 @@
-.BGContainer{
-    background-color:#eef;
-    height:100px;
+.SingleTop{
+    display: block;
+    position: absolute;
+    bottom:-5px;
+    width:110%;
+    left:-5%;
+    
+}
+.SingleTop>svg{
+    width:100%;
+}
+
+.riser{
+
 }

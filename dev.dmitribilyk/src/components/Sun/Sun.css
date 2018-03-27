@@ -1,4 +1,6 @@
-.BGContainer{
-    background-color:#eef;
-    height:100px;
+.Sun{
+    width:15vw;
+    height:15vw;
+    z-index:-15;
+    margin:0 auto;
 }

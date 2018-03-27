@@ -1,4 +1,17 @@
-.BGContainer{
-    background-color:#eef;
-    height:100px;
+.BottomBGContainer{
+    display:flex;
+    width:110vw;
+    height:50%;
+    align-self:flex-start;
+    align-items:flex-end;
+    overflow:hidden;
+    
+}
+
+.BottomBGs{
+    position: relative;
+    display:flex;
+    align-self:flex-start;
+    width:100vw;
+    height:50%;
 }

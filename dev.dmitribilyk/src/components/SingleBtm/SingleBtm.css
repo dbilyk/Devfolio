@@ -1,4 +1,12 @@
-.BGContainer{
-    background-color:#eef;
-    height:100px;
+.SingleBtm{
+    display: block;
+    position: absolute;
+    width:110%;
+    left:-5%;
+    top:-10px;
+    
+}
+.SingleBtm>svg{
+    width:100%;
+    
 }
