@@ -5,6 +5,7 @@
     flex-direction: column;
     position:relative;
     transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
     transition:transform 0.2s linear;    
     
     

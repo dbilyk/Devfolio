@@ -10,7 +10,7 @@ class App extends Component {
       <div className="App">
       
         <BGContainer />
-        <div style={{display:"relative",width:"100%", height:"500px", backgroundColor:"#fffc"}}>tuff stuff </div>
+        <div style={{paddingTop:"400px",display:"relative",width:"100%", height:"500px", backgroundColor:"#fffc"}}>tuff stuff </div>
         
       </div>
     );

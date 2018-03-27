@@ -21,24 +21,18 @@ export default class BGContainer extends React.Component {
 
     //trigger scroll updates every other time
     this.scrollCounter = 0
+    this.mouseCounter = 0
 
     this.animData = undefined
 
+    // Use our detect's results. passive applied if supported, capture will be false either way.
+
     //scroll happens
-    window.addEventListener("scroll", (e) => this.onScroll(e))
-    window.addEventListener("resize", (e) => {
-      //when window is resized, we need to reset the height values
-      this.animData.parallaxVerticalBounds = [window.screen.height / 5, -window.screen.height / 5]
-      this.animData.appHeight = document.querySelector(".App").clientHeight
-      this.animData.scrollPercent = window.pageYOffset / (this.animData.appHeight - window.outerHeight)
+    window.addEventListener("scroll", (e) => this.onScroll(e), false)
+    document.addEventListener("mousemove", (e) => this.onMouseMove(e), false)
+    window.addEventListener("deviceorientation",(e)=>this.onTilt(e),false)
+    window.addEventListener("resize", (e) => this.onResize(e), false)
 
-
-      //this.lerpBGColor()
-      this.lerpParallaxHeight()
-      this.setScrollPercent()
-      //this.lerpParallaxColors()
-      //this.lerpSunColor()
-    })
   }
 
 
@@ -50,30 +44,63 @@ export default class BGContainer extends React.Component {
       parallaxVerticalBounds: [window.screen.height / 5, -window.screen.height / 5],
     }
 
-    this.setState({ parallaxContainerHeight: document.querySelector(".ParallaxContainer").clientHeight })
+    this.setState({
+      parallaxContainerHeight: document.querySelector(".ParallaxContainer").clientHeight,
+      appWidth: window.innerWidth
+    })
     //call initial values for children
-    //this.lerpBGColor()
     this.lerpParallaxHeight()
     this.setScrollPercent()
-    //this.lerpSunColor()
   }
 
+  onResize(e) {
+    //when window is resized, we need to reset the height values
+    this.animData.parallaxVerticalBounds = [window.screen.height / 5, -window.screen.height / 5]
+    this.animData.appHeight = document.querySelector(".App").clientHeight
+    this.animData.scrollPercent = window.pageYOffset / (this.animData.appHeight - window.outerHeight)
+
+
+    this.setState({
+        parallaxContainerHeight: document.querySelector(".ParallaxContainer").clientHeight,
+        appWidth: window.innerWidth
+      })
+    this.lerpParallaxHeight()
+    this.setScrollPercent()
+  }
 
   onScroll(e) {
     this.scrollCounter += 1
-    this.setScrollPercent()
 
     if (this.scrollCounter === 8) {
       //handle scroll
       let BG = document.querySelector(".BGContainer")
       this.animData.scrollPercent = window.pageYOffset / (this.animData.appHeight - BG.clientHeight)
 
+      this.setScrollPercent()
 
-      //this.lerpBGColor()
       this.lerpParallaxHeight()
-      //this.lerpParallaxColors()
-      //this.lerpSunColor()
       this.scrollCounter = 0
+    }
+  }
+
+  onTilt(e){
+    this.mouseCounter += 1
+    if (this.mouseCounter === 8) {
+      let tilt = e.gamma*1.5
+      if(tilt<-25) tilt = -25
+      if(tilt>25) tilt = 25
+      tilt/=25
+      tilt*=this.state.appWidth / 2
+      this.setState({ xOffset: tilt})
+      this.mouseCounter = 0
+    }
+  }
+
+  onMouseMove(e) {
+    this.mouseCounter += 1
+    if (this.mouseCounter === 8) {
+      this.setState({ xOffset: (-this.state.appWidth / 2) + e.clientX })
+      this.mouseCounter = 0
     }
   }
 
@@ -109,33 +136,7 @@ export default class BGContainer extends React.Component {
 
   }
 
-  //for this component
-  // lerpBGColor() {
-  //   let dayCol = data.bg.day.bg
-  //   let nightCol = data.bg.night.bg
-  //   this.setState({
-  //     bgColor: this.lerpColor(dayCol, nightCol, this.animData.scrollPercent)
-  //   })
-  // }
 
-  // lerpParallaxColors() {
-  //   this.setState({
-  //     L1T: this.lerpColor(data.bg.day.l1T, data.bg.night.l1T, this.animData.scrollPercent),
-  //     L2T: this.lerpColor(data.bg.day.l2T, data.bg.night.l2T, this.animData.scrollPercent),
-  //     L3T: this.lerpColor(data.bg.day.l3T, data.bg.night.l3T, this.animData.scrollPercent),
-  //     L4T: this.lerpColor(data.bg.day.l4T, data.bg.night.l4T, this.animData.scrollPercent),
-  //     L5T: this.lerpColor(data.bg.day.l5T, data.bg.night.l5T, this.animData.scrollPercent),
-  //     L1B: this.lerpColor(data.bg.day.l1B, data.bg.night.l1B, this.animData.scrollPercent),
-  //     L2B: this.lerpColor(data.bg.day.l2B, data.bg.night.l2B, this.animData.scrollPercent),
-  //     L3B: this.lerpColor(data.bg.day.l3B, data.bg.night.l3B, this.animData.scrollPercent),
-  //     L4B: this.lerpColor(data.bg.day.l4B, data.bg.night.l4B, this.animData.scrollPercent),
-  //     L5B: this.lerpColor(data.bg.day.l5B, data.bg.night.l5B, this.animData.scrollPercent)
-  //   })
-  // }
-
-  // lerpSunColor() {
-  //   this.setState({ sunFill: this.lerpColor(data.bg.day.sun, data.bg.night.sun, this.animData.scrollPercent) })
-  // }
 
   lerpParallaxHeight() {
     let topBound = this.animData.parallaxVerticalBounds[0]
@@ -144,7 +145,7 @@ export default class BGContainer extends React.Component {
   }
 
   setScrollPercent() {
-    this.setState({ scrollPercent: (this.animData.scrollPercent>1)?1:this.animData.scrollPercent })
+    this.setState({ scrollPercent: (this.animData.scrollPercent > 1) ? 1 : this.animData.scrollPercent })
   }
 
   colorToString(colorArr) {
@@ -155,26 +156,27 @@ export default class BGContainer extends React.Component {
     return (
 
       <div className="BGContainer">
+          {this.state.log}        
+      
         <div style={{ opacity: this.state.scrollPercent }} className="BGContainerNight"></div>
         <ParallaxContainer opacity={this.state.scrollPercent} distFromTop={this.state.parallaxDistFromTop}>
-          <Sun VOffset={-150 + ((this.state.scrollPercent) * (150+ this.state.parallaxContainerHeight / 2))} opacity={this.state.scrollPercent} />
-
+          <Sun XOffset={this.state.xOffset/5} YOffset={-150 + ((this.state.scrollPercent) * (150 + this.state.parallaxContainerHeight / 2))} opacity={this.state.scrollPercent} />
           <TopBGs>
 
-            <SingleTop layer={4} opacity={this.state.scrollPercent} />
-            <SingleTop layer={3} opacity={this.state.scrollPercent} />
-            <SingleTop layer={2} opacity={this.state.scrollPercent} />
-            <SingleTop layer={1} opacity={this.state.scrollPercent} />
-            <SingleTop layer={0} opacity={this.state.scrollPercent} />
+            <SingleTop layer={4} XOffset={this.state.xOffset / 5} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -75} opacity={this.state.scrollPercent} />
+            <SingleTop layer={3} XOffset={this.state.xOffset / 10} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -39} opacity={this.state.scrollPercent} />
+            <SingleTop layer={2} XOffset={this.state.xOffset / 20} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -5} opacity={this.state.scrollPercent} />
+            <SingleTop layer={1} XOffset={this.state.xOffset / 30} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -7} opacity={this.state.scrollPercent} />
+            <SingleTop layer={0} XOffset={this.state.xOffset / 40} YOffset={0} opacity={this.state.scrollPercent} />
 
 
           </TopBGs>
           <BottomBGs>
-            <SingleBtm layer={4} VOffset={(1 - this.state.scrollPercent) * -120} opacity={this.state.scrollPercent} />
-            <SingleBtm layer={3} VOffset={(1 - this.state.scrollPercent) * -90} opacity={this.state.scrollPercent} />
-            <SingleBtm layer={2} VOffset={(1 - this.state.scrollPercent) * -30} opacity={this.state.scrollPercent} />
-            <SingleBtm layer={1} VOffset={(1 - this.state.scrollPercent) * -15} opacity={this.state.scrollPercent} />
-            <SingleBtm layer={0} VOffset={(1 - this.state.scrollPercent) * -10} opacity={this.state.scrollPercent} />
+            <SingleBtm layer={4} XOffset={this.state.xOffset/5} YOffset={(1 - this.state.scrollPercent) * -120} opacity={this.state.scrollPercent} />
+            <SingleBtm layer={3} XOffset={this.state.xOffset/10} YOffset={(1 - this.state.scrollPercent) * -90} opacity={this.state.scrollPercent} />
+            <SingleBtm layer={2} XOffset={this.state.xOffset/20} YOffset={(1 - this.state.scrollPercent) * -30} opacity={this.state.scrollPercent} />
+            <SingleBtm layer={1} XOffset={this.state.xOffset/30} YOffset={(1 - this.state.scrollPercent) * -15} opacity={this.state.scrollPercent} />
+            <SingleBtm layer={0} XOffset={this.state.xOffset/40} YOffset={(1 - this.state.scrollPercent) * -10} opacity={this.state.scrollPercent} />
 
           </BottomBGs>
 

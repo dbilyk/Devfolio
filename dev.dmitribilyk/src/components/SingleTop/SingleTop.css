@@ -4,8 +4,7 @@
     bottom:-5px;
     width:110%;
     left:-5%;
-    -webkit-transform-style: preserve-3d; 
-
+    transition:transform 1s ease-out;
     
 }
 .SingleTop> div > svg{

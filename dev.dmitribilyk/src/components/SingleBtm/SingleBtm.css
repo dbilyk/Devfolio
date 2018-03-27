@@ -6,7 +6,7 @@
     width:110%;
     left:-5%;
     overflow:visible;
-    transition:transform 0.3s linear;
+    transition:transform 1s ease-out;
 
     
 }
