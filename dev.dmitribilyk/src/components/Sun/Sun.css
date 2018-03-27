@@ -3,4 +3,12 @@
     height:15vw;
     z-index:-15;
     margin:0 auto;
+    transition:transform 0.3s linear;
+    
+}
+
+.Sun>svg:last-of-type{
+    transition:opacity 0.3s linear;
+    position:absolute;
+    left:0;
 }

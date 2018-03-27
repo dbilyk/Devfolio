@@ -2,4 +2,15 @@
     height:100vh;
     width:100vw;
     position:fixed;
+    background-color:rgb(208,255,242);
+    transform: translateZ(0);
+    z-index:-40;
+
+}
+.BGContainerNight{
+    background-color:rgb(57,40,68);
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    transition:opacity 0.3s linear;
 }

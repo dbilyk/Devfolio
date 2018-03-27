@@ -4,10 +4,19 @@
     bottom:-5px;
     width:110%;
     left:-5%;
+    -webkit-transform-style: preserve-3d; 
+
     
 }
-.SingleTop>svg{
+.SingleTop> div > svg{
     width:100%;
+    
+}
+
+.SingleTop>div>svg:last-of-type{
+    position:absolute;
+    left:0;
+    
 }
 
 .riser{

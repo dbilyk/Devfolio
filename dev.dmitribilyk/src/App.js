@@ -8,7 +8,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      
         <BGContainer />
+        <div style={{display:"relative",width:"100%", height:"500px", backgroundColor:"#fffc"}}>tuff stuff </div>
+        
       </div>
     );
   }

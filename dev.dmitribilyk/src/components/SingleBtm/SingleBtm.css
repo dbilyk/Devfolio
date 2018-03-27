@@ -1,12 +1,24 @@
+
 .SingleBtm{
     display: block;
     position: absolute;
+    top:-5px;
     width:110%;
     left:-5%;
-    top:-10px;
+    overflow:visible;
+    transition:transform 0.3s linear;
+
     
 }
-.SingleBtm>svg{
+.SingleBtm> div > svg{
     width:100%;
+    
+}
+
+
+.SingleBtm>div>svg:last-of-type{
+    position:absolute;
+    left:0;
+    top:0;
     
 }

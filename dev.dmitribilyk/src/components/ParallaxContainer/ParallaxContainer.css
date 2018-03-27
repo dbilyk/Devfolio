@@ -1,25 +1,26 @@
 .ParallaxContainer{
     overflow:visible;
-    height:100vh;
+    height:130vh;
     display:flex;
     flex-direction: column;
     position:relative;
+    transform: translateZ(0);
+    transition:transform 0.2s linear;    
+    
     
 }
 .BGDayGradient{
     position:absolute;
-    z-index:-10;
     background-size:100% 100%;
     width:100%;
     height:100%;
-    background:linear-gradient(0deg,rgba(254,168,103,0),rgba(254,168,103,255),rgba(254,168,103,0));
+    background:linear-gradient(0deg,rgba(254,168,103,0),rgba(254,168,103,100),rgba(254,168,103,0));
 }
 
 .BGNightGradient{
     position:absolute;
-    z-index:-10;
     background-size:100% 100%;
     width:100%;
     height:100%;
-    background:linear-gradient(0deg,rgba(87,145,151,0),rgba(87,145,151,255),rgba(87,145,151,0));
+    background:linear-gradient(0deg,rgba(87,145,151,0),rgba(87,145,151,0.7),rgba(87,145,151,0));
 }
