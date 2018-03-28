@@ -1,12 +1,17 @@
 .Sun{
     position:relative;
-    width:15vw;
-    height:15vw;
+    width:15%;
     z-index:-15;
     margin:0 auto;
     transition:transform 1.1s ease-out;
-    
 }
+@media screen and (min-width:700px){
+    .Sun{
+        width:100px;
+        height:100px;
+    
+    }
+}   
 
 .Sun>svg:last-of-type{
     transition:opacity 1s linear;

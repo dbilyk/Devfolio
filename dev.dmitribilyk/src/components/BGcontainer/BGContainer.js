@@ -1,7 +1,7 @@
 import React from "react"
 import "./BGContainer.css"
 import data from "../DATA.js"
-import ParallaxContainer from "../ParallaxContainer/ParallaxContainer";
+import ParallaxContainer from "../ParallaxContainer/ParallaxContainer"
 import Sun from "../Sun/Sun"
 import TopBGs from "../TopBGs/TopBGs"
 import BottomBGs from "../BottomBGs/BottomBGs"
@@ -156,18 +156,17 @@ export default class BGContainer extends React.Component {
     return (
 
       <div className="BGContainer">
-          {this.state.log}        
-      
         <div style={{ opacity: this.state.scrollPercent }} className="BGContainerNight"></div>
+        
         <ParallaxContainer opacity={this.state.scrollPercent} distFromTop={this.state.parallaxDistFromTop}>
-          <Sun XOffset={this.state.xOffset/5} YOffset={-150 + ((this.state.scrollPercent) * (150 + this.state.parallaxContainerHeight / 2))} opacity={this.state.scrollPercent} />
+          <Sun XOffset={this.state.xOffset/4} YOffset={-150 + ((this.state.scrollPercent) * (150 + this.state.parallaxContainerHeight / 2))} opacity={this.state.scrollPercent} />
           <TopBGs>
 
             <SingleTop layer={4} XOffset={this.state.xOffset / 5} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -75} opacity={this.state.scrollPercent} />
             <SingleTop layer={3} XOffset={this.state.xOffset / 10} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -39} opacity={this.state.scrollPercent} />
-            <SingleTop layer={2} XOffset={this.state.xOffset / 20} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -5} opacity={this.state.scrollPercent} />
-            <SingleTop layer={1} XOffset={this.state.xOffset / 30} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -7} opacity={this.state.scrollPercent} />
-            <SingleTop layer={0} XOffset={this.state.xOffset / 40} YOffset={0} opacity={this.state.scrollPercent} />
+            <SingleTop layer={2} XOffset={this.state.xOffset / 15} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -5} opacity={this.state.scrollPercent} />
+            <SingleTop layer={1} XOffset={this.state.xOffset / 17} YOffset={(1 - this.state.scrollPercent) * (this.state.appWidth / 1000) * -7} opacity={this.state.scrollPercent} />
+            <SingleTop layer={0} XOffset={this.state.xOffset / 20} YOffset={0} opacity={this.state.scrollPercent} />
 
 
           </TopBGs>

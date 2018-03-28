@@ -43,7 +43,7 @@ export default {
             gradient:[87,145,151],
             
             cloudLight:[72,59,80],
-            cloudMed:[64,72,51],
+            cloudMed:[64,52,71],
             cloudDark:[53,41,59],
         }
         

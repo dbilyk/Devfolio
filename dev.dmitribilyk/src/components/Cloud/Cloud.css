@@ -1,0 +1,38 @@
+.Cloud{
+    position:absolute;
+    margin-top:200vw;
+    animation:hover 2s ease-in-out infinite;
+    width:200px;
+}
+
+.cloudDrift{
+    animation: drift 10s linear infinite;
+}
+
+.cloudDrift>svg:last-child{
+    position:absolute;
+    left:0;
+    
+}
+
+@keyframes hover{
+    0% {
+        transform:translateY(0);
+    }
+    50% {
+        transform:translateY(-30px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+
+@keyframes drift{
+    0%{
+        transform:translateX(100vw);
+        
+    }
+    100%{
+        transform:translateX(-30vw);
+    }
+}
