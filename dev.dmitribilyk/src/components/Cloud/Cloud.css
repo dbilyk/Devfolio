@@ -1,8 +1,28 @@
 .Cloud{
     position:absolute;
-    margin-top:200vw;
-    animation:hover 2s ease-in-out infinite;
-    width:200px;
+    
+}
+
+.cloudParallax{
+    transition:transform 0.4s linear;
+    position:absolute;
+    top:40%;
+    
+}
+
+
+.hoverBig{
+    animation:hoverBig 2s ease-in-out infinite;
+    
+}
+.hoverMed{
+    animation:hoverMed 3s ease-in-out infinite;
+    
+
+}
+.hoverSml{
+    animation:hoverSml 4s ease-in-out infinite;
+
 }
 
 .cloudDrift{
@@ -12,15 +32,39 @@
 .cloudDrift>svg:last-child{
     position:absolute;
     left:0;
+    transition:opacity 1s linear;
+    
     
 }
 
-@keyframes hover{
+@keyframes hoverBig{
     0% {
         transform:translateY(0);
     }
     50% {
         transform:translateY(-30px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+@keyframes hoverMed{
+    0% {
+        transform:translateY(0);
+    }
+    50% {
+        transform:translateY(-20px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+@keyframes hoverSml{
+    0% {
+        transform:translateY(0);
+    }
+    50% {
+        transform:translateY(-10px);
     }
     100%{
         transform:translateY(0);

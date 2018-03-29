@@ -10,10 +10,6 @@ class App extends Component {
       <div className="App">
       
         <BGContainer />
-        <div>
-          <Cloud cloudEnum={1} opacity={0.5} speed={22} size={150}/>
-          
-        </div>
         
         <div style={{paddingTop:"400px",display:"relative",width:"100%", height:"500px", backgroundColor:"#fffc"}}>tuff stuff </div>
         

@@ -8,6 +8,7 @@ import BottomBGs from "../BottomBGs/BottomBGs"
 
 import SingleTop from "../SingleTop/SingleTop"
 import SingleBtm from "../SingleBtm/SingleBtm"
+import Cloud from "../Cloud/Cloud"
 
 export default class BGContainer extends React.Component {
   constructor(props) {
@@ -40,16 +41,19 @@ export default class BGContainer extends React.Component {
     //define data for animatations 
     this.animData = {
       appHeight: document.querySelector(".App").clientHeight,
+      appWidth: window.innerWidth,
       scrollPercent: 0,
       parallaxVerticalBounds: [window.screen.height / 5, -window.screen.height / 5],
     }
 
     this.setState({
       parallaxContainerHeight: document.querySelector(".ParallaxContainer").clientHeight,
-      appWidth: window.innerWidth
+      appWidth: window.innerWidth,
+      xOffset: 0 
     })
     //call initial values for children
     this.lerpParallaxHeight()
+    this.scrollCounter =7
     this.setScrollPercent()
   }
 
@@ -62,7 +66,8 @@ export default class BGContainer extends React.Component {
 
     this.setState({
         parallaxContainerHeight: document.querySelector(".ParallaxContainer").clientHeight,
-        appWidth: window.innerWidth
+        appWidth: window.innerWidth,
+        XOffset:0
       })
     this.lerpParallaxHeight()
     this.setScrollPercent()
@@ -178,6 +183,14 @@ export default class BGContainer extends React.Component {
             <SingleBtm layer={0} XOffset={this.state.xOffset/40} YOffset={(1 - this.state.scrollPercent) * -10} opacity={this.state.scrollPercent} />
 
           </BottomBGs>
+          <Cloud cloudEnum={1} YOffset={35} scrollPercent={this.state.scrollPercent} hoverSize="sml" animDelay={3} speed={34} size={7}/>
+          <Cloud cloudEnum={0} YOffset={45} scrollPercent={this.state.scrollPercent} hoverSize="sml" animDelay={8} speed={25} size={9}/>
+          
+          <Cloud cloudEnum={0} YOffset={50} scrollPercent={this.state.scrollPercent}  hoverSize="med" animDelay={2} speed={20} size={11}/>
+          
+          <Cloud cloudEnum={1} YOffset={55} scrollPercent={this.state.scrollPercent}  hoverSize="big" animDelay={1} speed={13} size={15}/>
+          <Cloud cloudEnum={0} YOffset={40} scrollPercent={this.state.scrollPercent}  hoverSize="big" animDelay={1} speed={7} size={17}/>
+        
 
         </ParallaxContainer>
       </div>
